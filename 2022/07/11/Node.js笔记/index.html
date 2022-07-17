@@ -1,0 +1,318 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Node.jsbiji | ❤胡小苗的blog❤</title><meta name="keywords" content="node"><meta name="author" content="胡小苗"><meta name="copyright" content="胡小苗"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Node.js1.浏览器中js的组成js核心语法-变量&#x2F;循环&#x2F;函数&#x2F;作用域webAPI-DOM&#x2F;BOM操作&#x2F;Ajax操作 1.为什么js可以在浏览器中被执行？待执行的js代码–&gt; js的解析引擎 chrome的v8引擎性能最好 2.为什么js可以操作DOM和BOMDOM APIBOM APIAjax API【浏览器内置了API函数】 -&gt;待执行的js代码【调用 webAPI】-&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.jsbiji">
+<meta property="og:url" content="http://huxiaomiao.com/2022/07/11/Node.js%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="❤胡小苗的blog❤">
+<meta property="og:description" content="Node.js1.浏览器中js的组成js核心语法-变量&#x2F;循环&#x2F;函数&#x2F;作用域webAPI-DOM&#x2F;BOM操作&#x2F;Ajax操作 1.为什么js可以在浏览器中被执行？待执行的js代码–&gt; js的解析引擎 chrome的v8引擎性能最好 2.为什么js可以操作DOM和BOMDOM APIBOM APIAjax API【浏览器内置了API函数】 -&gt;待执行的js代码【调用 webAPI】-&gt;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://huxiaomiao.com/image/other.png">
+<meta property="article:published_time" content="2022-07-11T07:41:55.523Z">
+<meta property="article:modified_time" content="2022-07-17T05:59:48.638Z">
+<meta property="article:author" content="胡小苗">
+<meta property="article:tag" content="node">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://huxiaomiao.com/image/other.png"><link rel="shortcut icon" href="/image/cat.ico"><link rel="canonical" href="http://huxiaomiao.com/2022/07/11/Node.js%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Node.jsbiji',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-07-17 13:59:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/image/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/image/other.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">❤胡小苗的blog❤</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Node.jsbiji</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-07-11T07:41:55.523Z" title="发表于 2022-07-11 15:41:55">2022-07-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-07-17T05:59:48.638Z" title="更新于 2022-07-17 13:59:48">2022-07-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/node/">node</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h1><h2 id="1-浏览器中js的组成"><a href="#1-浏览器中js的组成" class="headerlink" title="1.浏览器中js的组成"></a>1.浏览器中js的组成</h2><p>js核心语法-变量/循环/函数/作用域<br>webAPI-DOM/BOM操作/Ajax操作</p>
+<p><strong>1.为什么js可以在浏览器中被执行？</strong><br>待执行的js代码–&gt; js的解析引擎</p>
+<p>chrome的v8引擎性能最好</p>
+<p><strong>2.为什么js可以操作DOM和BOM</strong><br>DOM API<br>BOM API<br>Ajax API<br>【<strong>浏览器内置了API函数</strong>】</p>
+<p>-&gt;待执行的js代码【调用 webAPI】<br>-&gt;js解析引擎</p>
+<h2 id="2-浏览器中的js运行环境"><a href="#2-浏览器中的js运行环境" class="headerlink" title="2.浏览器中的js运行环境"></a>2.浏览器中的js运行环境</h2><p>chrome浏览器运行环境<br>v8解析引擎【解析和执行js代码】+内置API【由运行环境【浏览器】提供的特殊接口】–只能在所属的运行环境中被调用</p>
+<h2 id="3-js能做后端开发吗？"><a href="#3-js能做后端开发吗？" class="headerlink" title="3.js能做后端开发吗？"></a>3.js能做后端开发吗？</h2><p>python/java/PHP</p>
+<p>借助–Node.js【后端运行环境】</p>
+<h1 id="Node-js简介"><a href="#Node-js简介" class="headerlink" title="Node.js简介"></a>Node.js简介</h1><h2 id="1-什么是node-js"><a href="#1-什么是node-js" class="headerlink" title="1.什么是node.js?"></a>1.什么是node.js?</h2><p>基于chrome v8 引擎的 js运行环境<br>【可以把js代码放到node.js上–后端开发】</p>
+<h2 id="2-node-js中的-js运行环境"><a href="#2-node-js中的-js运行环境" class="headerlink" title="2.node.js中的 js运行环境"></a>2.node.js中的 js运行环境</h2><p>v8引擎 + 内置API【fs/path/http】</p>
+<p>浏览器–js的前端运行环境<br>node.js–js的后端运行环境<br>node.js无法调用DOM/BOM等浏览器内置API</p>
+<h2 id="3-node-js可以做什么？"><a href="#3-node-js可以做什么？" class="headerlink" title="3.node.js可以做什么？"></a>3.node.js可以做什么？</h2><p>基于Express框架–构建web应用<br>基于restify框架–构建API接口项目</p>
+<h2 id="4-学习路径"><a href="#4-学习路径" class="headerlink" title="4.学习路径"></a>4.学习路径</h2><p>js基础语法 + Node.js内置API模块【fs/path/http】 + 第三方API模块</p>
+<h2 id="5-如何运行js代码？"><a href="#5-如何运行js代码？" class="headerlink" title="5.如何运行js代码？"></a>5.如何运行js代码？</h2><p>方法一：<br>终端–node test.js</p>
+<p>优化：<br>shift+右键+在此处打开powershell窗口–windows升级版终端</p>
+<p><strong>终端中的快捷键</strong><br>1.上箭头–显示上一次执行的命令<br>2.tab–快速补全文件路径<br>3.esc–快速清空已经输入的命令<br>4.cls–清空终端内所有内容</p>
+<h1 id="fs文件系统模块"><a href="#fs文件系统模块" class="headerlink" title="fs文件系统模块"></a>fs文件系统模块</h1><h2 id="1-什么是fs文件系统模块？"><a href="#1-什么是fs文件系统模块？" class="headerlink" title="1.什么是fs文件系统模块？"></a>1.什么是fs文件系统模块？</h2><p>用来操作文件的模块–提供一系列方法和属性</p>
+<p>方法：<br>fs.readFile()–读取文件中的内容<br>fs.writeFile()–向指定文件中写入内容</p>
+<p>使用：<br><strong>使用fs模块来操作文件，就需要先导入</strong><br>const fs = require(‘fs’);</p>
+<h2 id="2-fs-readFile"><a href="#2-fs-readFile" class="headerlink" title="2.fs.readFile()"></a>2.fs.readFile()</h2><p>语法格式：<br>fs.readFile(path,[options],callback)</p>
+<p>path:文件路径<br>options：以什么编码格式读取<br>callpack:文件读取完后，可以通过回调函数得到文件内容</p>
+<p><img src="2022-07-11-16-27-18.png"></p>
+<p><strong>判断是否读取成功</strong><br>err对象是否为null</p>
+<p>–判断err是否能转化为true–能–文件读取失败<br><img src="2022-07-11-16-34-27.png"></p>
+<h2 id="3-fs-writeFile"><a href="#3-fs-writeFile" class="headerlink" title="3.fs.writeFile()"></a>3.fs.writeFile()</h2><p>fs.writeFile(file,data,[options],callback)</p>
+<p>data:要写入的内容</p>
+<h2 id="4-练习"><a href="#4-练习" class="headerlink" title="4.练习"></a>4.练习</h2><p><img src="2022-07-11-16-49-24.png"><br><img src="2022-07-11-17-01-21.png"></p>
+<h2 id="5-路径动态拼接的问题"><a href="#5-路径动态拼接的问题" class="headerlink" title="5.路径动态拼接的问题"></a>5.路径动态拼接的问题</h2><p>解决：<br>直接提供完整路径，不要使用相对路径</p>
+<p><strong>__dirname:表示当前文件所处的目录</strong></p>
+<h1 id="path路径模块"><a href="#path路径模块" class="headerlink" title="path路径模块"></a>path路径模块</h1><h2 id="1-是什么？"><a href="#1-是什么？" class="headerlink" title="1.是什么？"></a>1.是什么？</h2><p>处理路径的模块</p>
+<p><strong>方法</strong><br>path.join()–将多个路径片段拼接成一个完整的路径字符串<br>path.basename()–用来从路径字符串中，将文件名解析出来</p>
+<p><strong>使用</strong><br>const path = require(‘path’)</p>
+<h2 id="2-路径拼接"><a href="#2-路径拼接" class="headerlink" title="2.路径拼接"></a>2.路径拼接</h2><h3 id="path-join-常用"><a href="#path-join-常用" class="headerlink" title="path.join()-[常用]"></a>path.join()-[常用]</h3><p>语法格式<br>path.join([…paths])<br>返回值：string</p>
+<p>../—–抵消一层路径</p>
+<h3 id="path-basename"><a href="#path-basename" class="headerlink" title="path.basename()"></a>path.basename()</h3><p>获取路径的最后一个部分–获取路径中的文件名</p>
+<p>语法格式<br>path.basename(path,[txt])</p>
+<h2 id="path-extname"><a href="#path-extname" class="headerlink" title="path.extname()"></a>path.extname()</h2><p>获取路径扩展名部分</p>
+<p>语法格式<br>path.extname(path)</p>
+<h2 id="3-时钟案例–拆分文件"><a href="#3-时钟案例–拆分文件" class="headerlink" title="3.时钟案例–拆分文件"></a>3.时钟案例–拆分文件</h2><p>创建两个正则表达式，分别匹配 style/script标签</p>
+<p>使用fs模块，读取需要被处理的HTML文件</p>
+<p>自定义resloveCSS方法，写入index.css</p>
+<p>自定义resloveJS方法，写入index.js</p>
+<p>自定义resloveHTML方法，写入index.html</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&#x27;path&#x27;)</span><br><span class="line">const fs = require(&#x27;fs&#x27;)</span><br><span class="line"></span><br><span class="line">const regStyle = /&lt;style&gt;[\s\S]*&lt;\/style&gt;/</span><br><span class="line"></span><br><span class="line">const regScript = /&lt;script&gt;[\s\S]*&lt;\/script&gt;/</span><br><span class="line"></span><br><span class="line">fs.readFile(path.join(__dirname, &#x27;index.html&#x27;), &#x27;utf-8&#x27;, (err, dataStr) =&gt; &#123;</span><br><span class="line">    if (err) &#123;</span><br><span class="line">        return console.log(&#x27;读取文件失败&#x27;, err.message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //读取成功后调用方法</span><br><span class="line">    resolveCSS(dataStr);</span><br><span class="line">    resolveJS(dataStr);</span><br><span class="line">    resolveHTML(dataStr)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//处理css样式的方法</span><br><span class="line">function resolveCSS(htmlStr) &#123;</span><br><span class="line">    //使用正则提取需要的内容</span><br><span class="line">   const r1 =  regStyle.exec(htmlStr)</span><br><span class="line"></span><br><span class="line">   //将提取出来的样式字符串进行repalce操作</span><br><span class="line"></span><br><span class="line"> const newCSS =   r1[0].replace(&#x27;&lt;style&gt;&#x27;,&#x27;&#x27;).replace(&#x27;&lt;/style&gt;&#x27;,&#x27;&#x27;)</span><br><span class="line"></span><br><span class="line"> //存文件</span><br><span class="line"></span><br><span class="line"> fs.writeFile(path.join(__dirname,&#x27;index.css&#x27;),newCSS,(err)=&gt;&#123;</span><br><span class="line">    if(err)&#123;</span><br><span class="line">        return console.log(&quot;写入css样式失败&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    console.log(&#x27;写入样式文件成功&#x27;);</span><br><span class="line"> &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//处理script样式</span><br><span class="line">function resolveJS(htmlStr) &#123;</span><br><span class="line">    //使用正则提取需要的内容</span><br><span class="line">   const r2 =  regScript.exec(htmlStr)</span><br><span class="line"></span><br><span class="line">   //将提取出来的样式字符串进行repalce操作</span><br><span class="line"></span><br><span class="line"> const newJS =   r2[0].replace(&#x27;&lt;script&gt;&#x27;,&#x27;&#x27;).replace(&#x27;&lt;/script&gt;&#x27;,&#x27;&#x27;)</span><br><span class="line"></span><br><span class="line"> //存文件</span><br><span class="line"></span><br><span class="line"> fs.writeFile(path.join(__dirname,&#x27;index.js&#x27;),newJS,(err)=&gt;&#123;</span><br><span class="line">    if(err)&#123;</span><br><span class="line">        return console.log(&quot;写入js失败&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    console.log(&#x27;写入js文件成功&#x27;);</span><br><span class="line"> &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//处理html</span><br><span class="line">function resolveHTML(htmlStr) &#123;</span><br><span class="line">    const newHTML = htmlStr</span><br><span class="line">    .replace(regStyle,&#x27;&lt;link rel=&quot;stylesheet&quot; href=&quot;index.css&quot;&gt;&#x27;)</span><br><span class="line">    .replace(regScript,&#x27;&lt;script src=&quot;index.js&quot;&gt;&lt;/script&gt;&#x27;)</span><br><span class="line"></span><br><span class="line">    fs.writeFile(path.join(__dirname,&#x27;index.html&#x27;),newHTML,err=&gt;&#123;</span><br><span class="line">        if(err)&#123;</span><br><span class="line">            return console.log(&quot;写入html失败&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        console.log(&#x27;写入html文件成功&#x27;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意点</strong></p>
+<ol>
+<li>fs.writeFile()只能用于创建文件，不能用来创建路径</li>
+<li>fs.writeFile()重复写入同一个文件，新写入的内容会覆盖旧的内容</li>
+</ol>
+<h1 id="HTTP模块"><a href="#HTTP模块" class="headerlink" title="HTTP模块"></a>HTTP模块</h1><h2 id="1-什么是HTTP模块？"><a href="#1-什么是HTTP模块？" class="headerlink" title="1.什么是HTTP模块？"></a>1.什么是HTTP模块？</h2><p>客户端：消费资源<br>服务端：对外提供网络资源</p>
+<p><strong>作用</strong><br>http模块是创建web服务器的模块<br>通过 http.createServer() 方法–对外提供web服务</p>
+<p>服务器安装了web服务器软件–Apache</p>
+<p><strong>使用</strong><br>导入<br>const http = require(‘http’)</p>
+<h2 id="2-服务器"><a href="#2-服务器" class="headerlink" title="2.服务器"></a>2.服务器</h2><p><strong>IP地址</strong><br>每台计算机的唯一地址–电话号码</p>
+<p>点分十进制 192.168.1.1 </p>
+<p><strong>域名和域名服务器</strong></p>
+<p><strong>端口号</strong><br>有很多个web服务，每个都对应唯一一个端口号</p>
+<h2 id="3-创建web服务器"><a href="#3-创建web服务器" class="headerlink" title="3.创建web服务器"></a>3.创建web服务器</h2><p>导入http模块</p>
+<p>创建web服务器实例–createServer()</p>
+<p>为服务器实例绑定request事件–on</p>
+<p>启动服务器–listen</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const http = require(&#x27;http&#x27;)</span><br><span class="line"></span><br><span class="line">const server = http.createServer()</span><br><span class="line"></span><br><span class="line">server.on(&#x27;request&#x27;,function(req,res)&#123;</span><br><span class="line">    console.log(&#x27;server&#x27;);</span><br><span class="line">&#125;)</span><br><span class="line">// 只要请求就会触发request</span><br><span class="line"></span><br><span class="line">server.listen(8080,function()&#123;</span><br><span class="line">    console.log(&#x27;server running at http://127.0.0.1:8080&#x27;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>req请求对象</strong><br>只要服务端收到了客户端的请求，就会调用通过server.on()为服务器绑定的request事件处理函数</p>
+<p>【为了访问与客户端相关的数据或属性】</p>
+<p><strong>res响应对象</strong><br>与服务器相关的数据或属性</p>
+<p>end–向客户端发送指定的内容，并结束这一次请求</p>
+<p><strong>解决中文乱码</strong><br>res.setHeader(‘Content-Type’,’text/html;charset=utf-8’)</p>
+<h2 id="4-根据不同url响应不同html内容"><a href="#4-根据不同url响应不同html内容" class="headerlink" title="4.根据不同url响应不同html内容"></a>4.根据不同url响应不同html内容</h2><p>获取请求的url地址</p>
+<p>设置默认的相应内容为 404 Not found</p>
+<p>判断用户请求的是否为/或/index.htmlshouted</p>
+<p>设置content-type，防止乱码</p>
+<p>res.end()–把响应返回</p>
+<h1 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h1><h2 id="1-是什么？-1"><a href="#1-是什么？-1" class="headerlink" title="1.是什么？"></a>1.是什么？</h2><p>将复杂问题，分解<br>模块是可分解，组合的单元</p>
+<p><strong>遵循固定规则， 把大文件拆分成独立并互相依赖的多个小模块</strong></p>
+<p>好处<br>提高代码复用性，可维护性，按需加载</p>
+<p><strong>模块化规范</strong><br>对模块拆分组合时，需要遵循的规则<br>–使用什么语法格式引用模块<br>–在模块中使用什么语法格式向外暴露成员</p>
+<h2 id="2-Node-js中的模块化"><a href="#2-Node-js中的模块化" class="headerlink" title="2.Node.js中的模块化"></a>2.Node.js中的模块化</h2><p>内置模块–fs，path，http<br>自定义模块–用户创建的每个.js文件<br>第三方模块–使用前需要下载</p>
+<h2 id="3-加载模块"><a href="#3-加载模块" class="headerlink" title="3.加载模块"></a>3.加载模块</h2><p>require–按需加载<br>用户自定义的–里面写文件路径-可以省略文件后缀</p>
+<h2 id="4-模块作用域"><a href="#4-模块作用域" class="headerlink" title="4.模块作用域"></a>4.模块作用域</h2><p>在自定义模块中的变量，方法等，只能在当前模块被访问–即使导入也不能用</p>
+<p>好处–防止全局变量污染问题</p>
+<h2 id="5-module对象"><a href="#5-module对象" class="headerlink" title="5.module对象"></a>5.module对象</h2><p>向外共享模块作用域中的成员</p>
+<p>module对象–每个js自定义模块都i有–存储了与当前模块有关的信息</p>
+<p>module.exports–默认等于一个空对象–使用这个将模块内的成员共享出去，供外界使用</p>
+<p>在外界导入一个自定义模块是，得到的成员是，通过module.exports的空对象{}</p>
+<p>module.exports.username = ‘za’<br>向对象上挂载一个属性–可以对外暴露</p>
+<p><strong>注意点</strong><br>require()导入模块–导入的结果–永远以module.exports<strong>指向的对象</strong>为准</p>
+<h2 id="6-exports对象"><a href="#6-exports对象" class="headerlink" title="6.exports对象"></a>6.exports对象</h2><p>默认情况下：exports和module.exports指向同一个对象</p>
+<h2 id="7-模块化规范"><a href="#7-模块化规范" class="headerlink" title="7.模块化规范"></a>7.模块化规范</h2><p>node.js遵循了CommonJS规范【规定了模块的特性和各模块之间如何互相依赖】</p>
+<p>Common.js规定：</p>
+<ol>
+<li>每个模块内部，module变量代表当前模块</li>
+<li>module变量是一个对象，它的exports属性是对外的接口</li>
+<li>require()用于加载模块</li>
+</ol>
+<h1 id="npm与包"><a href="#npm与包" class="headerlink" title="npm与包"></a>npm与包</h1><h2 id="1-什么是包"><a href="#1-什么是包" class="headerlink" title="1.什么是包"></a>1.什么是包</h2><p>node.js中的第三方模块—包</p>
+<h2 id="2-包的来源"><a href="#2-包的来源" class="headerlink" title="2.包的来源"></a>2.包的来源</h2><p>由第三方个人或团队开发出来的</p>
+<h2 id="3-为什么需要包？"><a href="#3-为什么需要包？" class="headerlink" title="3.为什么需要包？"></a>3.为什么需要包？</h2><p>node.js只提供一些底层API，效率低</p>
+<p>包基于内置模块封装出来，提供更高级API，提高了开发效率</p>
+<h2 id="4-下载"><a href="#4-下载" class="headerlink" title="4.下载"></a>4.下载</h2><p>npm包管理工具–随着node.js一起被安装到了用户的电脑上</p>
+<h2 id="5-npm注意点"><a href="#5-npm注意点" class="headerlink" title="5.npm注意点"></a>5.npm注意点</h2><p>装包后多<br>node-modules的文件夹–存的安装过的包<br>package.json–记录每一个包的下载信息<br>【包管理配置文件】</p>
+<p>记录与项目有关的配置信息</p>
+<ol>
+<li>项目名称，版本号，描述</li>
+<li>项目中用到了哪些包</li>
+<li>哪些包只在开发中用到……</li>
+</ol>
+<p>创建<br>npm init -y</p>
+<h2 id="6-dependences"><a href="#6-dependences" class="headerlink" title="6.dependences"></a>6.dependences</h2><p>记录npm install【一次性安装所有依赖包】 都安装了哪些包</p>
+<p>写在包<br>npm uninstall</p>
+<h2 id="7-解决包的下载速度慢"><a href="#7-解决包的下载速度慢" class="headerlink" title="7.解决包的下载速度慢"></a>7.解决包的下载速度慢</h2><p>淘宝镜像NPM服务器</p>
+<p>npm i nrm -g<br>nrm ls–查看所有可用镜像源</p>
+<p>nrm use taobao–使用淘宝镜像</p>
+<p><strong>包的分类</strong><br>1.项目包—node_modules目录中的<br>开发依赖包–npm i 包名 -D【只在开发中用到】<br>核心依赖包–npm i 包名【开发和项目上线之后都会用到】</p>
+<p>2.全局包<br>npm install -g—-安装到c盘用户文件夹中</p>
+<p><strong>i5ting_toc</strong><br>把md文件转化成html文件</p>
+<p><strong>包的结构</strong></p>
+<ol>
+<li>包必须以单独的目录存在</li>
+<li>包的顶级目录下必须有package.json</li>
+<li>package.json里必须包含 name,version,main属性</li>
+</ol>
+<h2 id="8-开发属于自己的包"><a href="#8-开发属于自己的包" class="headerlink" title="8.开发属于自己的包"></a>8.开发属于自己的包</h2><p>需要实现的功能</p>
+<p><img src="2022-07-15-16-50-25.png"></p>
+<p><img src="2022-07-15-16-52-09.png"></p>
+<p><img src="2022-07-15-16-52-46.png"></p>
+<p><img src="2022-07-15-16-54-39.png"></p>
+<h2 id="9-不同的功能模块化拆分"><a href="#9-不同的功能模块化拆分" class="headerlink" title="9.不同的功能模块化拆分"></a>9.不同的功能模块化拆分</h2><p><img src="2022-07-15-16-55-38.png"></p>
+<h2 id="10-发布npm包"><a href="#10-发布npm包" class="headerlink" title="10. 发布npm包"></a>10. 发布npm包</h2><p>注册npm账号<br>npm login–输入用户名/密码/邮箱<br>npm pulish<br>npm unpublish 包名 –force 删除已经发布的包</p>
+<h1 id="模块的加载机制"><a href="#模块的加载机制" class="headerlink" title="模块的加载机制"></a>模块的加载机制</h1><ol>
+<li><p>优先从缓存中加载<br>多次require()不会导致模块的代码被执行多次</p>
+</li>
+<li><p>内置模块的加载机制<br>优先级最高</p>
+</li>
+<li><p>自定义模块的加载机制<br>require(‘./‘)不许以./或者../开头</p>
+<p><img src="2022-07-15-18-17-42.png"></p>
+</li>
+<li><p>第三方模块加载机制<br>require()不是内置模块，也没有以./开头，则会从当前模块的父目录开始，尝试从node_modules文件中加载第三方模块</p>
+</li>
+<li><p>目录作为模块<br><img src="2022-07-15-18-23-53.png"></p>
+</li>
+</ol>
+<h1 id="express"><a href="#express" class="headerlink" title="express"></a>express</h1><h2 id="1-初始Express"><a href="#1-初始Express" class="headerlink" title="1.初始Express"></a>1.初始Express</h2><p><strong>什么时Express</strong><br>和node内置的http模块类似—用来创建web服务器的</p>
+<p><strong>优点</strong><br>基于内置http模块进一步封装的，能提升开发效率–第三方模块</p>
+<p><strong>能做什么</strong><br>常见的两种服务器：</p>
+<ol>
+<li>web网站服务器：提供web网页资源</li>
+<li>API接口服务器：提供API接口的服务器</li>
+</ol>
+<p>Express可以快速创建 web网站/API接口 服务器</p>
+<h2 id="2-Express的基本使用"><a href="#2-Express的基本使用" class="headerlink" title="2.Express的基本使用"></a>2.Express的基本使用</h2><p><strong>安装</strong><br>npm i express</p>
+<p><strong>监听GET请求</strong><br>app.get()—监听客户端的GET请求<br><img src="2022-07-15-18-37-06.png"></p>
+<p><strong>监听post请求</strong><br>app.post()-监听客户端的post请求<br><img src="2022-07-15-18-38-10.png"></p>
+<p><strong>把内容响应给客户端</strong><br>res.send()–把处理好的内容，发送给客户端</p>
+<p><img src="2022-07-15-18-38-48.png"></p>
+<p><strong>获取URL中携带的查询参数</strong><br>req.query对象–可以访问到客户端通过查询字符串的形式，发送到服务器的参数</p>
+<p><strong>获取动态参数</strong><br>req.params</p>
+<h2 id="3-托管静态资源"><a href="#3-托管静态资源" class="headerlink" title="3.托管静态资源"></a>3.托管静态资源</h2><p>express.static()–创建一个静态资源服务器<br>app.use(express.static(‘public’))–对public下的图片/css文件/js文件对外开放访问</p>
+<p><strong>挂载路径前缀</strong><br>app.use(‘/public’,express.static(‘public’))</p>
+<h2 id="4-nodemon"><a href="#4-nodemon" class="headerlink" title="4.nodemon"></a>4.nodemon</h2><p>监听项目变化，自动重新启动</p>
+<h1 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h1><h2 id="1-什么是路由？"><a href="#1-什么是路由？" class="headerlink" title="1.什么是路由？"></a>1.什么是路由？</h2><p>路由就是 映射关系</p>
+<p>express–客户端的请求与服务器处理函数之间的映射关系<br>由三部分组成【请求的类型/请求的URL地址/处理函数】<br>app.method(path,handler)</p>
+<h2 id="2-路由的匹配过程"><a href="#2-路由的匹配过程" class="headerlink" title="2.路由的匹配过程"></a>2.路由的匹配过程</h2><p>请求到达服务器–路由匹配【从上到下按顺序匹配】–成功后【请求类型和请求的URL同时匹配成功】调用对应的处理函数</p>
+<h2 id="3-路由的使用"><a href="#3-路由的使用" class="headerlink" title="3.路由的使用"></a>3.路由的使用</h2><p>将路由挂载到app上</p>
+<p><img src="2022-07-17-12-44-17.png"></p>
+<h2 id="4-模块化路由"><a href="#4-模块化路由" class="headerlink" title="4.模块化路由"></a>4.模块化路由</h2><p>将路由抽离为单独的模块</p>
+<p>实现步骤：<br>1.创建路由模块对应的.js文件<br>2.调用express.Router()函数创建路由对象<br>3.向路由对象上挂载具体的路由<br>4.使用module.exports向外共享路由对象<br>5.使用app.use()函数注册路由模块</p>
+<p><img src="2022-07-17-12-47-12.png"></p>
+<p><strong>模块前缀</strong><br>add.use(‘/api’,userRouter)</p>
+<h2 id="5-express中间件"><a href="#5-express中间件" class="headerlink" title="5.express中间件"></a>5.express中间件</h2><p>中间处理环节—对请求做预处理</p>
+<p>中间件函数的形参列表中，必须包含next参数</p>
+<p>next函数的作用：<br>把流转关系转交给下一个中间件或路由</p>
+<h1 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h1></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://huxiaomiao.com">胡小苗</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://huxiaomiao.com/2022/07/11/Node.js%E7%AC%94%E8%AE%B0/">http://huxiaomiao.com/2022/07/11/Node.js%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://huxiaomiao.com" target="_blank">❤胡小苗的blog❤</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/node/">node</a></div><div class="post_share"><div class="social-share" data-image="/image/other.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/07/08/webpack%E9%9D%A2%E8%AF%95%E9%A2%98/"><img class="next-cover" src="/image/other.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">webpack面试题</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/image/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">胡小苗</div><div class="author-info__description">热爱生活，及时行乐。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/huxiaomiao0216" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Node-js"><span class="toc-number">1.</span> <span class="toc-text">Node.js</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%ADjs%E7%9A%84%E7%BB%84%E6%88%90"><span class="toc-number">1.1.</span> <span class="toc-text">1.浏览器中js的组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%9A%84js%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.</span> <span class="toc-text">2.浏览器中的js运行环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-js%E8%83%BD%E5%81%9A%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E5%90%97%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">3.js能做后端开发吗？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Node-js%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">Node.js简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AFnode-js"><span class="toc-number">2.1.</span> <span class="toc-text">1.什么是node.js?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-node-js%E4%B8%AD%E7%9A%84-js%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83"><span class="toc-number">2.2.</span> <span class="toc-text">2.node.js中的 js运行环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-node-js%E5%8F%AF%E4%BB%A5%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">2.3.</span> <span class="toc-text">3.node.js可以做什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84"><span class="toc-number">2.4.</span> <span class="toc-text">4.学习路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8Cjs%E4%BB%A3%E7%A0%81%EF%BC%9F"><span class="toc-number">2.5.</span> <span class="toc-text">5.如何运行js代码？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#fs%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97"><span class="toc-number">3.</span> <span class="toc-text">fs文件系统模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AFfs%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%9F"><span class="toc-number">3.1.</span> <span class="toc-text">1.什么是fs文件系统模块？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-fs-readFile"><span class="toc-number">3.2.</span> <span class="toc-text">2.fs.readFile()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-fs-writeFile"><span class="toc-number">3.3.</span> <span class="toc-text">3.fs.writeFile()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%BB%83%E4%B9%A0"><span class="toc-number">3.4.</span> <span class="toc-text">4.练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E8%B7%AF%E5%BE%84%E5%8A%A8%E6%80%81%E6%8B%BC%E6%8E%A5%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">3.5.</span> <span class="toc-text">5.路径动态拼接的问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#path%E8%B7%AF%E5%BE%84%E6%A8%A1%E5%9D%97"><span class="toc-number">4.</span> <span class="toc-text">path路径模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">4.1.</span> <span class="toc-text">1.是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%B7%AF%E5%BE%84%E6%8B%BC%E6%8E%A5"><span class="toc-number">4.2.</span> <span class="toc-text">2.路径拼接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#path-join-%E5%B8%B8%E7%94%A8"><span class="toc-number">4.2.1.</span> <span class="toc-text">path.join()-[常用]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#path-basename"><span class="toc-number">4.2.2.</span> <span class="toc-text">path.basename()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#path-extname"><span class="toc-number">4.3.</span> <span class="toc-text">path.extname()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%97%B6%E9%92%9F%E6%A1%88%E4%BE%8B%E2%80%93%E6%8B%86%E5%88%86%E6%96%87%E4%BB%B6"><span class="toc-number">4.4.</span> <span class="toc-text">3.时钟案例–拆分文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP%E6%A8%A1%E5%9D%97"><span class="toc-number">5.</span> <span class="toc-text">HTTP模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AFHTTP%E6%A8%A1%E5%9D%97%EF%BC%9F"><span class="toc-number">5.1.</span> <span class="toc-text">1.什么是HTTP模块？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">5.2.</span> <span class="toc-text">2.服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">5.3.</span> <span class="toc-text">3.创建web服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%A0%B9%E6%8D%AE%E4%B8%8D%E5%90%8Curl%E5%93%8D%E5%BA%94%E4%B8%8D%E5%90%8Chtml%E5%86%85%E5%AE%B9"><span class="toc-number">5.4.</span> <span class="toc-text">4.根据不同url响应不同html内容</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-number">6.</span> <span class="toc-text">模块化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F-1"><span class="toc-number">6.1.</span> <span class="toc-text">1.是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Node-js%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-number">6.2.</span> <span class="toc-text">2.Node.js中的模块化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%8A%A0%E8%BD%BD%E6%A8%A1%E5%9D%97"><span class="toc-number">6.3.</span> <span class="toc-text">3.加载模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%A8%A1%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">6.4.</span> <span class="toc-text">4.模块作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-module%E5%AF%B9%E8%B1%A1"><span class="toc-number">6.5.</span> <span class="toc-text">5.module对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-exports%E5%AF%B9%E8%B1%A1"><span class="toc-number">6.6.</span> <span class="toc-text">6.exports对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%A8%A1%E5%9D%97%E5%8C%96%E8%A7%84%E8%8C%83"><span class="toc-number">6.7.</span> <span class="toc-text">7.模块化规范</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#npm%E4%B8%8E%E5%8C%85"><span class="toc-number">7.</span> <span class="toc-text">npm与包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E5%8C%85"><span class="toc-number">7.1.</span> <span class="toc-text">1.什么是包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%8C%85%E7%9A%84%E6%9D%A5%E6%BA%90"><span class="toc-number">7.2.</span> <span class="toc-text">2.包的来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%8C%85%EF%BC%9F"><span class="toc-number">7.3.</span> <span class="toc-text">3.为什么需要包？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%B8%8B%E8%BD%BD"><span class="toc-number">7.4.</span> <span class="toc-text">4.下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-npm%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="toc-number">7.5.</span> <span class="toc-text">5.npm注意点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-dependences"><span class="toc-number">7.6.</span> <span class="toc-text">6.dependences</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E8%A7%A3%E5%86%B3%E5%8C%85%E7%9A%84%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6%E6%85%A2"><span class="toc-number">7.7.</span> <span class="toc-text">7.解决包的下载速度慢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%BC%80%E5%8F%91%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8C%85"><span class="toc-number">7.8.</span> <span class="toc-text">8.开发属于自己的包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E4%B8%8D%E5%90%8C%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E5%8C%96%E6%8B%86%E5%88%86"><span class="toc-number">7.9.</span> <span class="toc-text">9.不同的功能模块化拆分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E5%8F%91%E5%B8%83npm%E5%8C%85"><span class="toc-number">7.10.</span> <span class="toc-text">10. 发布npm包</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E7%9A%84%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="toc-number">8.</span> <span class="toc-text">模块的加载机制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#express"><span class="toc-number">9.</span> <span class="toc-text">express</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%88%9D%E5%A7%8BExpress"><span class="toc-number">9.1.</span> <span class="toc-text">1.初始Express</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Express%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-number">9.2.</span> <span class="toc-text">2.Express的基本使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%89%98%E7%AE%A1%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90"><span class="toc-number">9.3.</span> <span class="toc-text">3.托管静态资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-nodemon"><span class="toc-number">9.4.</span> <span class="toc-text">4.nodemon</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1"><span class="toc-number">10.</span> <span class="toc-text">路由</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%AF%E7%94%B1%EF%BC%9F"><span class="toc-number">10.1.</span> <span class="toc-text">1.什么是路由？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%B7%AF%E7%94%B1%E7%9A%84%E5%8C%B9%E9%85%8D%E8%BF%87%E7%A8%8B"><span class="toc-number">10.2.</span> <span class="toc-text">2.路由的匹配过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%B7%AF%E7%94%B1%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">10.3.</span> <span class="toc-text">3.路由的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%A8%A1%E5%9D%97%E5%8C%96%E8%B7%AF%E7%94%B1"><span class="toc-number">10.4.</span> <span class="toc-text">4.模块化路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-express%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">10.5.</span> <span class="toc-text">5.express中间件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%A8%E5%9F%9F"><span class="toc-number">11.</span> <span class="toc-text">跨域</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/07/11/Node.js%E7%AC%94%E8%AE%B0/" title="Node.jsbiji"><img src="/image/other.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Node.jsbiji"/></a><div class="content"><a class="title" href="/2022/07/11/Node.js%E7%AC%94%E8%AE%B0/" title="Node.jsbiji">Node.jsbiji</a><time datetime="2022-07-11T07:41:55.523Z" title="发表于 2022-07-11 15:41:55">2022-07-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/08/webpack%E9%9D%A2%E8%AF%95%E9%A2%98/" title="webpack面试题"><img src="/image/other.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="webpack面试题"/></a><div class="content"><a class="title" href="/2022/07/08/webpack%E9%9D%A2%E8%AF%95%E9%A2%98/" title="webpack面试题">webpack面试题</a><time datetime="2022-07-08T03:13:56.074Z" title="发表于 2022-07-08 11:13:56">2022-07-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/07/SEO%E4%BC%98%E5%8C%96/" title="SEO优化"><img src="/image/other.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SEO优化"/></a><div class="content"><a class="title" href="/2022/07/07/SEO%E4%BC%98%E5%8C%96/" title="SEO优化">SEO优化</a><time datetime="2022-07-07T14:24:27.672Z" title="发表于 2022-07-07 22:24:27">2022-07-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/04/css%E6%96%87%E6%A1%A3%E7%AC%94%E8%AE%B0/" title="css文档笔记"><img src="/image/css.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="css文档笔记"/></a><div class="content"><a class="title" href="/2022/07/04/css%E6%96%87%E6%A1%A3%E7%AC%94%E8%AE%B0/" title="css文档笔记">css文档笔记</a><time datetime="2022-07-04T04:42:04.117Z" title="发表于 2022-07-04 12:42:04">2022-07-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/04/html%E9%9D%A2%E8%AF%95%E9%A2%98/" title="html面试题"><img src="/image/html.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="html面试题"/></a><div class="content"><a class="title" href="/2022/07/04/html%E9%9D%A2%E8%AF%95%E9%A2%98/" title="html面试题">html面试题</a><time datetime="2022-07-04T03:19:42.097Z" title="发表于 2022-07-04 11:19:42">2022-07-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 胡小苗</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div></div></body></html>
